@@ -37,6 +37,21 @@
                         <input name="shipping_phone" placeholder="+94 xxxxxxxxx" type="text" class="form-control">
                     </div>
 
+                    <div class="mt-2 mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment_method" id="cash_on_delivery" value="cash_on_delivery" checked>
+                            <label class="form-check-label" for="cash_on_delivery">
+                                Cash On Delivery
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment_method" id="paypal" value="paypal">
+                            <label class="form-check-label" for=paypal">
+                                Paypal
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-outline-primary">Submit</button>
                     </div>

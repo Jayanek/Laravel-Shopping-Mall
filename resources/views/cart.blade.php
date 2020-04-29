@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="container">
+        @if((Cart::session(auth()->user()->id)->getTotal()) != 0)
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -49,9 +50,12 @@
             </div>
         </div>
 
+@else
+
+<div class="alert alert-primary">Your Shopping Cart is Empty!!</div>
 
 
-
+        @endif
     </div>
 
 @endsection

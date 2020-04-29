@@ -24,6 +24,10 @@ Route::get('home/cart','CardController@index')->name('user.cart')->middleware('a
 Route::get('home/cart/add/{product}','CardController@add')->name('addTocart')->middleware('auth');
 Route::get('home/cart/update/{product}','CardController@update')->name('card.update')->middleware('auth');
 Route::get('home/cart/delete/{product}','CardController@destroy')->name('cart.destroy')->middleware('auth');
-Route::get('/checkout', 'CardController@checkout')->name('cart.checkout')->middleware('auth');
+Route::get('/checkout-form', 'CardController@checkout')->name('cart.checkout')->middleware('auth');
 
 Route::resource('orders','OrderController')->middleware('auth');
+
+Route::get('/checkout/{order}','CheckoutController@getCheckoutExpress')->name('checkout');
+Route::get('/checkout/success/{order}','CheckoutController@getCheckoutExpressSuccess')->name('checkout.success');
+Route::get('/checkout/cancel','CheckoutController@getCheckoutExpressCancel')->name('checkout.cancel');

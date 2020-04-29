@@ -25,9 +25,10 @@ class CardController extends Controller
             'associatedModel' => $product
         ));
 
-        $userId = auth()->user()->id;
+        /*$userId = auth()->user()->id;
         $cartItems =\Cart::session($userId)->getContent();
-        return view('cart',compact('cartItems'));
+        return view('cart',compact('cartItems'));*/
+        return redirect()->route('user.cart');
 
     }
 

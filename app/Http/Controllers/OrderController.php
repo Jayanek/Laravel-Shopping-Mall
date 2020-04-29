@@ -56,6 +56,7 @@ class OrderController extends Controller
         $order->shipping_state= $request->input('shipping_state');
         $order->shipping_zipcode = $request->input('shipping_zipcode');
         $order->shipping_phone = $request->input('shipping_phone');
+        $order->payment_method = $request->input('payment_method');
 
         $order->billing_fullname = $request->input('shipping_fullname');
         $order->billing_address = $request->input('shipping_address');
@@ -68,17 +69,23 @@ class OrderController extends Controller
         $order->grand_total = \Cart::session(auth()->user()->id)->getTotal();
         $order->item_count = \Cart::session(auth()->user()->id)->getContent()->count();
 
+
+
         $order->save();
 
-        $item_list = \Cart::session(auth()->user()->id)->getContent();
+        /*$item_list = \Cart::session(auth()->user()->id)->getContent();
 
         foreach ($item_list as $item){
             $order->items()->attach($item->id,['price' => $item->price,'quantity' => $item->quantity]);
+        }*/
+
+        if($request->input('payment_method') == "paypal"){
+            return redirect()->route('checkout',$order->id);
         }
 
 
 
-        return 'succeess';
+        return redirect()->route('home')->withMessage('Order Placed successfully');
 
     }
 

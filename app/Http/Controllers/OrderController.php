@@ -73,11 +73,13 @@ class OrderController extends Controller
 
         $order->save();
 
-        /*$item_list = \Cart::session(auth()->user()->id)->getContent();
+        $item_list = \Cart::session(auth()->user()->id)->getContent();
 
         foreach ($item_list as $item){
             $order->items()->attach($item->id,['price' => $item->price,'quantity' => $item->quantity]);
-        }*/
+        }
+
+
 
         if($request->input('payment_method') == "paypal"){
             return redirect()->route('checkout',$order->id);

@@ -31,3 +31,8 @@ Route::resource('orders','OrderController')->middleware('auth');
 Route::get('/checkout/{order}','CheckoutController@getCheckoutExpress')->name('checkout');
 Route::get('/checkout/success/{order}','CheckoutController@getCheckoutExpressSuccess')->name('checkout.success');
 Route::get('/checkout/cancel','CheckoutController@getCheckoutExpressCancel')->name('checkout.cancel');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

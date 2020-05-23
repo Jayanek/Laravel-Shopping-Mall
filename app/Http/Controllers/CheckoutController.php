@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCompleted;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Srmklive\PayPal\Services\ExpressCheckout;
 
 class CheckoutController extends Controller
@@ -67,6 +69,8 @@ class CheckoutController extends Controller
            $order->status = "completed";
            $order->save();
 
+            Mail::to($order->user->email)->send(new OrderCompleted($order));
+
 
             return redirect()->route('home')->withMessage('Order Placed successfully');
         }
@@ -75,6 +79,6 @@ class CheckoutController extends Controller
         return redirect()->route('home')->withError('Error in Transaction');
     }
     public function getCheckoutExpressCancel(Request $request){
-        return 'success';
+        return redirect()->route('home')->withError('Error in Transaction');
     }
 }

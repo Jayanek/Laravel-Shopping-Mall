@@ -27,6 +27,7 @@ Route::get('home/cart/delete/{product}','CardController@destroy')->name('cart.de
 Route::get('/checkout-form', 'CardController@checkout')->name('cart.checkout')->middleware('auth');
 
 Route::resource('orders','OrderController')->middleware('auth');
+Route::resource('shop','ShopController')->middleware('auth');
 
 Route::get('/checkout/{order}','CheckoutController@getCheckoutExpress')->name('checkout');
 Route::get('/checkout/success/{order}','CheckoutController@getCheckoutExpressSuccess')->name('checkout.success');

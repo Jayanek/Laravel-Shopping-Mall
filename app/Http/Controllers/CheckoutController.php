@@ -71,7 +71,7 @@ class CheckoutController extends Controller
 
             Mail::to($order->user->email)->send(new OrderCompleted($order));
 
-
+            \Cart::session(auth()->id())->clear();
             return redirect()->route('home')->withMessage('Order Placed successfully');
         }
 

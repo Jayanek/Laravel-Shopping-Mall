@@ -86,7 +86,7 @@ class OrderController extends Controller
         }
 
 
-
+        \Cart::session(auth()->user()->id)->clear();
         return redirect()->route('home')->withMessage('Order Placed successfully');
 
     }
